@@ -25,7 +25,7 @@ class Work extends Connection {
 	*/
 	public function fetchAllWork()
 	{
-		return $this->fetchAll('SELECT * FROM works');
+		return $this->fetchAll('SELECT * FROM works ORDER BY id DESC');
 	}
 
     /**
@@ -68,7 +68,7 @@ class Work extends Connection {
      */
 	public function addWork (array $data) 
 	{
-		if (!$this->validate($dadta)) {
+		if (!$this->validate($data)) {
 			return false;
 		}
 		unset($data['create']);		

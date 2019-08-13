@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'controller_default' => 'default',
+	'controller_default' => 'home',
 	'method_default' => 'index',
 
 	'db' => [

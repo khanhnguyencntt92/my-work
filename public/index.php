@@ -24,5 +24,4 @@ $controllerObject->_init($_GET, $_POST);
 App\Models\Connection::connect($config['db']);
 
 call_user_func_array([$controllerObject, $methodName], []);
-
-
+exit;
