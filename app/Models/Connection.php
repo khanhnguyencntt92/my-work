@@ -48,7 +48,7 @@ class Connection {
     * @param array $params
     * @return object
     */
-    public function fetchOne(string $query, array $params = []) {
+    public function fetchOne (string $query, array $params = []) {
         $statement = self::connect()->prepare($query);
         if (!$statement->execute($params) ) {
             return null;
@@ -61,7 +61,7 @@ class Connection {
      * @param array $params
      * @return array
      */
-    public function fetchAll(string $query, array $params = []) {
+    public function fetchAll (string $query, array $params = []) {
         $statement = self::connect()->prepare($query);
         if (!$statement->execute($params) ) {
             return [];

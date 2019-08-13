@@ -2,9 +2,10 @@
 
 include_once '../vendor/autoload.php';
 
-$controllerName = 'App\Controllers\\' . camelCase(strval($_GET['controller'] ?? 'default')) . 'Controller';
+$config = include_once '../config/app.php';
+$controllerName = 'App\Controllers\\' . camelCase(strval($_GET['controller'] ?? $config['controller_default'])) . 'Controller';
 
-$methodName = lcfirst(camelCase(strval($_GET['method'] ?? 'index')));
+$methodName = lcfirst(camelCase(strval($_GET['method'] ?? $config['method_default'])));
 
 if (!class_exists($controllerName)) {
 	exit('Page not found!');
@@ -20,12 +21,8 @@ unset($_GET['controller'], $_GET['method']);
 
 $controllerObject->_init($_GET, $_POST);
 
-App\Models\Connection::connect([
-	'driver' => 'mysql',
-    'host' => 'localhost',
-    'username' => 'root',
-    'password' => '',
-    'db_name' => 'my-work',
-]);
+App\Models\Connection::connect($config['db']);
 
-call_user_func_array([$controllerObject, $methodName], ['params' => $_GET]);
+call_user_func_array([$controllerObject, $methodName], []);
+
+
