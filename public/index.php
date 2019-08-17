@@ -3,8 +3,9 @@
 include_once '../vendor/autoload.php';
 
 $config = include_once '../config/app.php';
+//print_r($_GET);
 $controllerName = 'App\Controllers\\' . camelCase(strval($_GET['controller'] ?? $config['controller_default'])) . 'Controller';
-
+print_r($controllerName);exit();
 $methodName = lcfirst(camelCase(strval($_GET['method'] ?? $config['method_default'])));
 
 if (!class_exists($controllerName)) {
